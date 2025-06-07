@@ -1,0 +1,191 @@
+body {
+  font-family: 'Linden Hill', serif;
+  background-color: #F1E4C2;
+}
+h1, h2, h3, .font-display {
+  font-family: 'DM Serif Display', serif;
+}
+nav a {
+  font-family: 'Special Elite', cursive;
+  font-size: 1.25rem;
+  position: relative;
+  display: inline-block;
+  transition: all 0.2s ease-in-out;
+}
+nav a:hover {
+  color: #FFD8B1;
+  text-shadow: 
+    0 0 3px #FFD8B1,
+    0 0 6px #D67A3D,
+    0 0 9px #D67A3D,
+    0 0 12px #FFD8B1,
+    0 0 20px #D67A3D;
+  animation: flicker 1.2s infinite alternate;
+}
+@keyframes flicker {
+  0% { opacity: 1; }
+  45% { opacity: 0.7; }
+  55% { opacity: 0.5; }
+  60% { opacity: 1; }
+  100% { opacity: 0.85; }
+}
+.underline-deco {
+  text-decoration: underline dotted #A4443D 1px;
+  text-underline-offset: 4px;
+}
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.mobile-menu {
+  display: none;
+}
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+.hamburger span {
+  background: #FAF9F5;
+  height: 3px;
+  width: 24px;
+  border-radius: 1px;
+  transition: 0.3s;
+}
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+  .mobile-menu {
+    display: block;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #4A2C2A;
+    padding: 10px;
+    text-align: right;
+    width: 200px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s ease-in-out;
+  }
+  .mobile-menu.active {
+    transform: scaleY(1);
+  }
+  .mobile-menu a {
+    display: block;
+    padding: 8px 0;
+    color: #FFD8B1;
+    font-family: 'Special Elite', cursive;
+    text-decoration: none;
+    font-size: 1.1rem;
+  }
+  .mobile-menu a:hover {
+    text-shadow: 0 0 5px #FFD8B1;
+  }
+}
+.vintage-btn {
+  background-color: transparent;
+  border: 2px solid #3b2c20;
+  color: #3b2c20;
+  padding: 0.6rem 1.5rem;
+  font-family: 'Special Elite', serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 2px 2px 0 #d1b99d;
+  transition: all 0.3s ease;
+}
+.vintage-btn:hover {
+  background-color: #3b2c20;
+  color: #fefaf5;
+  box-shadow: 4px 4px 0 #aa9072;
+}
+.card-vintage:hover {
+  text-shadow: 1px 1px 0 #fff4cc, 2px 2px 0 #8a5a28;
+  transform: scale(1.02);
+}
+.vintage-btn {
+  background-color: transparent;
+  border: 2px solid #3b2c20;
+  color: #3b2c20;
+  padding: 0.5rem 1.4rem;
+  font-family: 'Special Elite', serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  box-shadow: 2px 2px 0 #c5b08d;
+  transition: all 0.3s ease;
+}
+.vintage-btn:hover {
+  background-color: #3b2c20;
+  color: #fffaf0;
+  box-shadow: 4px 4px 0 #a98b68;
+}
+.card-vintage {
+  background: #fefaf5;
+  border: 1px solid #d1b99d;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.vintage-btn {
+  background-color: transparent;
+  border: 2px solid #3b2c20;
+  color: #3b2c20;
+  padding: 0.5rem 1.2rem;
+  font-family: 'Special Elite', serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  display: inline-block;
+  text-decoration: none;
+  box-shadow: 2px 2px 0 #c5b08d;
+  transition: all 0.3s ease;
+}
+.vintage-btn:hover {
+  background-color: #3b2c20;
+  color: #fffaf0;
+  box-shadow: 4px 4px 0 #a98b68;
+}
+.vintage-btn {
+  background-color: transparent;
+  border: 2px solid #3b2c20;
+  color: #3b2c20;
+  padding: 0.5rem 1.2rem;
+  font-family: 'Special Elite', serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  display: inline-block;
+  text-decoration: none;
+  box-shadow: 2px 2px 0 #c5b08d;
+  transition: all 0.3s ease;
+}
+.vintage-btn:hover {
+  background-color: #3b2c20;
+  color: #fffaf0;
+  box-shadow: 4px 4px 0 #a98b68;
+}
+.vintage-btn {
+  background-color: transparent;
+  border: 2px solid #3b2c20;
+  color: #3b2c20;
+  padding: 0.5rem 1.2rem;
+  font-family: 'Special Elite', serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  display: inline-block;
+  text-decoration: none;
+  box-shadow: 2px 2px 0 #c5b08d;
+  transition: all 0.3s ease;
+}
+.vintage-btn:hover {
+  background-color: #3b2c20;
+  color: #fffaf0;
+  box-shadow: 4px 4px 0 #a98b68;
+}
