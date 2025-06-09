@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CumaHost - Hosting Vintage</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Unna&family=Linden+Hill&family=Special+Elite&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+</head>
+<body class="text-[#4A2C2A]">
+  <div class="max-w-none bg-[#F1E4C2]">
+    <header class="bg-[#4A2C2A] text-[#FAF9F5] py-3 shadow-md relative">
+      <div class="max-w-6xl mx-auto flex items-center justify-between px-4">
+        <a href="/" class="flex items-center gap-4">
+          <img src="logo-vintage-6.png" alt="Logo CumaHost" class="h-12 w-auto">
+          <span class="text-2xl font-display tracking-wide">CumaHost</span>
+        </a>
+        <nav class="space-x-6 desktop-menu">
+          <a href="#" class="underline-deco">Web Hosting</a>
+          <a href="#" class="underline-deco">Nama Domain</a>
+          <a href="#" class="underline-deco">Bantuan</a>
+        </nav>
+        <div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="mobile-menu absolute right-4 top-full mt-2">
+        <a href="#">Web Hosting</a>
+        <a href="#">Nama Domain</a>
+        <a href="#">Bantuan</a>
+      </div>
+    </header>
+
+<!-- Pencarian nama domain -->
+
+<section class="bg-[#f8f3e8] py-16 px-4 text-center" style="font-family: 'Special Elite', cursive;">
+  <h1 class="text-4xl text-[#2B4B40] mb-6 tracking-wide">Cek Domain Murah Bergaya Vintage</h1>
+
+  <div class="max-w-2xl mx-auto relative">
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center border-4 border-[#BFA36F] bg-[#fffdf7] shadow-[inset_0_0_10px_rgba(0,0,0,0.1)] rounded-full overflow-hidden">
+      <input id="domainInput" type="text" placeholder="masukkan nama domain kamu..."
+        class="flex-1 px-6 py-4 text-lg text-[#2B4B40] bg-transparent focus:outline-none placeholder-[#999]" />
+
+      <button id="checkButton"
+        class="px-8 py-4 bg-[#D1B684] hover:bg-[#BFA36F] text-white text-lg font-bold transition-all duration-200 border-l border-[#BFA36F] vintage-btn">
+        Cek Ketersediaan
+      </button>
+    </div>
+
+    <p class="mt-2 text-sm text-[#666]">
+      💡 Cukup ketik nama domain tanpa ekstensi. Contoh: <code>rahmatdigital</code>
+    </p>
+
+    <div id="resultMessage" class="mt-6 text-lg text-[#2B4B40]"></div>
+  </div>
+</section>
+
+<script>
+  document.getElementById('checkButton').addEventListener('click', function (e) {
+    e.preventDefault();
+    const nameOnly = document.getElementById('domainInput').value.trim();
+    const ext = 'com'; // default ekstensi yang dicek
+    const fullDomain = nameOnly + '.' + ext;
+    const resultBox = document.getElementById('resultMessage');
+
+    if (!nameOnly) {
+      resultBox.innerHTML = '⚠️ Silakan masukkan nama domain.';
+      return;
+    }
+
+    resultBox.innerHTML = '⏳ Mengecek...';
+
+    fetch('check-domain.php?domain=' + encodeURIComponent(fullDomain))
+      .then(res => res.json())
+      .then(data => {
+        if (data.available) {
+          resultBox.innerHTML = `
+            ✅ Domain <strong>${fullDomain}</strong> tersedia!
+            <br><br>
+            <a href="https://billing.cumahost.com/cart.php?a=add&domain=register&query=${fullDomain}"
+              target="_blank"
+              class="inline-block mt-4 bg-green-700 hover:bg-green-800 text-white py-2 px-6 rounded shadow transition">
+              ➕ Pesan Domain Ini
+            </a>
+          `;
+        } else {
+          resultBox.innerHTML = `❌ Domain <strong>${fullDomain}</strong> sudah terdaftar.`;
+        }
+      })
+      .catch(err => {
+        resultBox.innerHTML = '❌ Terjadi kesalahan saat memeriksa domain.';
+      });
+  });
+</script>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#4A2C2A] text-[#F1E4C2] py-8 mt-12 text-sm">
+      <div class="max-w-6xl mx-auto px-4 text-center">
+        <img src="/assets/img/dekorasi/ornamen-vintage-folk.png" alt="Ornamen Penutup" class="mx-auto w-20 mb-4">
+        <p>&copy; 2025 CumaHost. Semua hak dilestarikan.</p>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,166 @@
+/* ========== VINTAGE UTILITY STYLES ========== */
+
+.btn-vintage {
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.375rem;
+  text-align: center;
+  font-family: 'Special Elite', serif;
+  color: #fff;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+.btn-vintage:hover {
+  transform: scale(1.05);
+}
+
+/* Warna tombol spesifik */
+.btn-wa {
+  background-color: #16a34a;
+}
+.btn-wa:hover {
+  background-color: #15803d;
+}
+
+.btn-telp {
+  background-color: #2563eb;
+}
+.btn-telp:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-tiket {
+  background-color: #374151;
+}
+.btn-tiket:hover {
+  background-color: #1f2937;
+}
+
+/* Glow pulse */
+.glow-pulse {
+  animation: glowPulse 2s ease-in-out infinite;
+  box-shadow: 0 0 8px #fff4, 0 0 20px #fff5;
+}
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 5px #fff2, 0 0 10px #fff3;
+  }
+  50% {
+    box-shadow: 0 0 15px #fff4, 0 0 25px #fff5;
+  }
+}
+
+/* Typing effect */
+.typing-effect {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 3s steps(40, end) infinite;
+  border-right: 2px solid white;
+}
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* Judul retro */
+.text-vintage-title {
+  font-size: 1.75rem;
+  color: #b91c1c;
+  text-transform: uppercase;
+  text-shadow: 1px 1px #000;
+  font-weight: bold;
+}
+
+/* Link gaya jadul */
+.link-vintage {
+  color: #fff;
+  transition: all 0.3s ease;
+}
+.link-vintage:hover {
+  color: #facc15;
+  text-shadow: 0 0 4px #facc15;
+}
+/* == Vintage Utility Styles == */
+
+.btn-vintage {
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.375rem;
+  text-align: center;
+  font-family: 'Special Elite', serif;
+  color: #fff;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+.btn-vintage:hover {
+  transform: scale(1.05);
+}
+
+.btn-wa {
+  background-color: #16a34a;
+}
+.btn-wa:hover {
+  background-color: #15803d;
+}
+
+.btn-telp {
+  background-color: #2563eb;
+}
+.btn-telp:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-tiket {
+  background-color: #374151;
+}
+.btn-tiket:hover {
+  background-color: #1f2937;
+}
+
+.glow-pulse {
+  animation: glowPulse 2s ease-in-out infinite;
+  box-shadow: 0 0 8px #fff4, 0 0 20px #fff5;
+}
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 5px #fff2, 0 0 10px #fff3;
+  }
+  50% {
+    box-shadow: 0 0 15px #fff4, 0 0 25px #fff5;
+  }
+}
+
+.typing-effect {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 3s steps(40, end) infinite;
+  border-right: 2px solid white;
+}
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+.text-vintage-title {
+  font-size: 1.75rem;
+  color: #b91c1c;
+  text-transform: uppercase;
+  text-shadow: 1px 1px #000;
+  font-weight: bold;
+}
+
+.link-vintage {
+  color: #fff;
+  transition: all 0.3s ease;
+}
+.link-vintage:hover {
+  color: #facc15;
+  text-shadow: 0 0 4px #facc15;
+}
+.footer-vintage {
+  background-color: #fef7e0;
+  border-top: 1px solid #c9b18d;
+  font-family: 'Special Elite', serif;
+  color: #3e3e3e;
+  font-size: 0.875rem; /* text-sm */
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pilih Hosting untuk Domain Anda</title>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Special Elite', cursive; background-color: #fef9f3; }
+  </style>
+</head>
+<body class="py-10 px-6 text-center">
+  <h1 class="text-3xl md:text-4xl text-[#2B4B40] mb-6">Pilih Paket Hosting untuk Domain Anda</h1>
+
+  <div class="text-lg mb-6">
+    <p class="mb-2">Domain Anda:</p>
+    <div id="domainTarget" class="inline-block bg-[#D1B684] text-white font-bold py-2 px-4 rounded-full shadow"></div>
+  </div>
+
+  <div class="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto">
+    <div class="border border-[#BFA36F] rounded-lg p-6 shadow bg-white">
+      <h2 class="text-xl mb-2 font-bold">Starter</h2>
+      <p class="mb-4">Cocok untuk pemula, 1 domain</p>
+      <button onclick="goCheckout(1)" class="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded">Pilih Paket Ini</button>
+    </div>
+
+    <div class="border border-[#BFA36F] rounded-lg p-6 shadow bg-white">
+      <h2 class="text-xl mb-2 font-bold">Pro</h2>
+      <p class="mb-4">Untuk website aktif dan profesional</p>
+      <button onclick="goCheckout(2)" class="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded">Pilih Paket Ini</button>
+    </div>
+
+    <div class="border border-[#BFA36F] rounded-lg p-6 shadow bg-white">
+      <h2 class="text-xl mb-2 font-bold">Unlimited</h2>
+      <p class="mb-4">Tanpa batas, cocok untuk reseller</p>
+      <button onclick="goCheckout(3)" class="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded">Pilih Paket Ini</button>
+    </div>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const domain = urlParams.get('domain');
+    const domainTarget = document.getElementById('domainTarget');
+
+    if (!domain) {
+      domainTarget.innerHTML = '<span class="text-red-600">Tidak ada domain yang dipilih</span>';
+    } else {
+      domainTarget.textContent = domain;
+    }
+
+    function goCheckout(pid) {
+      if (!domain) return alert("Domain tidak valid");
+      const target = `https://billing.cumahost.com/cart.php?a=add&pid=${pid}&domain=register&query=${domain}`;
+      window.location.href = target;
+    }
+  </script>
+</body>
+</html>

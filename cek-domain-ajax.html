@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cek Domain CumaHost</title>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Special Elite', cursive; background-color: #f9f4ec; }
+    .typewriter::after { content: '|'; animation: blink 1s infinite; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    .fade-in { animation: fadeIn 0.6s ease-in-out both; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="py-16 px-4 text-center">
+  <h1 class="text-4xl text-[#2B4B40] mb-6">Cek Domain Vintage Anda</h1>
+
+  <div class="max-w-xl mx-auto relative">
+    <div class="flex border-4 border-[#BFA36F] bg-[#fffdf7] shadow rounded-full overflow-hidden">
+      <input id="domainInput" type="text"
+        class="flex-1 px-6 py-4 text-lg text-[#2B4B40] bg-transparent focus:outline-none placeholder-[#999]">
+      <button id="checkButton"
+        class="px-8 py-4 bg-[#D1B684] hover:bg-[#BFA36F] text-white text-lg font-bold transition-all duration-200">
+        Cek
+      </button>
+    </div>
+    <p class="mt-2 text-sm text-[#666]">💡 Cukup ketik nama domain tanpa ekstensi. Contoh: <code>rahmatdigital</code></p>
+  </div>
+
+  <div id="loadingAnim" class="mt-6 text-[#2B4B40] hidden">⏳ Sedang memeriksa domain...</div>
+  <div id="resultArea" class="max-w-4xl mx-auto mt-10 text-left"></div>
+
+  <script>
+    const placeholderTexts = [
+      'cek nama domain anda...',
+      'rahmatdigital',
+      'tokobungaku',
+      'kedaisenja',
+      'barayaweb'
+    ];
+    const input = document.getElementById('domainInput');
+    let typeIndex = 0, charIndex = 0;
+
+    function typeEffect() {
+      if (charIndex <= placeholderTexts[typeIndex].length) {
+        input.setAttribute('placeholder', placeholderTexts[typeIndex].substring(0, charIndex++));
+        setTimeout(typeEffect, 100);
+      } else {
+        setTimeout(() => {
+          charIndex = 0;
+          typeIndex = (typeIndex + 1) % placeholderTexts.length;
+          typeEffect();
+        }, 2000);
+      }
+    }
+    typeEffect();
+
+    document.getElementById('checkButton').addEventListener('click', doDomainCheck);
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        doDomainCheck();
+      }
+    });
+
+    function doDomainCheck() {
+      const keyword = input.value.trim().toLowerCase();
+      const resultArea = document.getElementById('resultArea');
+      const loading = document.getElementById('loadingAnim');
+
+      if (!/^[a-z0-9-]+$/.test(keyword)) {
+        alert('Nama domain hanya boleh huruf, angka, atau tanda hubung.');
+        return;
+      }
+
+      resultArea.innerHTML = '';
+      loading.classList.remove('hidden');
+      input.value = ''; // Bersihkan input
+
+      fetch('ajax-check.php?domain=' + encodeURIComponent(keyword))
+        .then(res => res.json())
+        .then(data => {
+          loading.classList.add('hidden');
+
+          if (!data || !data.domains) {
+            resultArea.innerHTML = '❌ Gagal mengambil data.';
+            return;
+          }
+
+          let html = `<table class="w-full text-left mt-4 border border-[#BFA36F] fade-in">
+            <thead class="bg-[#D1B684] text-white">
+              <tr><th class="px-4 py-2">Domain</th><th>Harga</th><th>Status</th><th>Aksi</th></tr>
+            </thead>
+            <tbody>`;
+
+          data.domains.forEach(item => {
+            const domain = item.domain;
+            const price = item.price && item.price !== '-' ? `Rp${Number(item.price).toLocaleString('id-ID')}` : '-';
+            const status = item.available ? '<span class="text-green-700 font-bold">Tersedia</span>' : '<span class="text-red-600">Terdaftar</span>';
+            const aksi = item.available
+              ? `<a href="https://billing.cumahost.com/cart.php?a=add&domain=register&query=${domain}" target="_blank" class="px-3 py-1 bg-green-600 text-white rounded">Beli Domain</a>
+                 <a href="https://billing.cumahost.com/store/hosting" target="_blank" class="ml-2 px-3 py-1 bg-blue-700 text-white rounded">+ Hosting</a>`
+              : '-';
+
+            html += `<tr class="border-t border-[#ccc]">
+              <td class="px-4 py-2">${domain}</td>
+              <td>${price}</td>
+              <td>${status}</td>
+              <td>${aksi}</td>
+            </tr>`;
+          });
+
+          html += '</tbody></table>';
+          resultArea.innerHTML = html;
+        })
+        .catch(() => {
+          loading.classList.add('hidden');
+          resultArea.innerHTML = '❌ Terjadi kesalahan saat menghubungi server.';
+        });
+    }
+  </script>
+</body>
+</html>
