@@ -220,3 +220,13 @@ header {
     text-shadow: 0 0 5px #FFD8B1;
   }
 }
+/* FONT VINTAGE */
+.font-vintage {
+  font-family: 'Special Elite', monospace;
+}
+
+/* BUTTON VINTAGE */
+.vintage-btn {
+  @apply px-5 py-2.5 rounded-2xl text-sm font-semibold shadow-md transition duration-200;
+  font-family: 'Special Elite', monospace;
+}
